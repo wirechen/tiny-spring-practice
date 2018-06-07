@@ -12,10 +12,7 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public interface BeanFactory {
 
-    /**
-     * 获取bean
-     * @return
-     */
+    // 获取bean
     Object getBean(String name);
 
     /**

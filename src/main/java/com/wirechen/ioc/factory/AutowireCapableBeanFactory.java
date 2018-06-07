@@ -1,6 +1,10 @@
 package com.wirechen.ioc.factory;
 
 import com.wirechen.ioc.bean.BeanDefinition;
+import com.wirechen.ioc.bean.PropertyValue;
+
+import java.lang.reflect.Field;
+import java.util.List;
 
 /**
  * @Author: WireChen
@@ -17,14 +21,37 @@ public class AutowireCapableBeanFactory extends AbstractBeanFactory {
     @Override
     protected Object doCreateBean(BeanDefinition beanDefinition) {
         try {
-            Object bean = beanDefinition.getBeanClass().newInstance();
+            Object bean = createBeanInstance(beanDefinition);
+            applyPropertyValues(bean, beanDefinition);
             return bean;
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
-
         return null;
+    }
+
+    /**
+     * 创建bean实例
+     * @param beanDefinition
+     * @return
+     * @throws Exception
+     */
+    protected Object createBeanInstance(BeanDefinition beanDefinition) throws Exception {
+        return beanDefinition.getBeanClass().newInstance(); //默认构造方法new一个属性都为空的对象
+    }
+
+    /**
+     * 给bean设置属性
+     * @param bean
+     * @param beanDefinition
+     * @throws Exception
+     */
+    protected void applyPropertyValues(Object bean, BeanDefinition beanDefinition) throws Exception {
+        List<PropertyValue> propertyValueList = beanDefinition.getPropertyValues().getPropertyValueList();
+        for (PropertyValue propertyValue : propertyValueList) {
+            Field field = bean.getClass().getDeclaredField(propertyValue.getName());
+            field.setAccessible(true);
+            field.set(bean, propertyValue.getValue());
+        }
     }
 }
