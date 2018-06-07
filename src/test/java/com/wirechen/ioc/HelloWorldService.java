@@ -1,4 +1,4 @@
-package com.wirechen.ioc.factory;
+package com.wirechen.ioc;
 
 /**
  * @Author: WireChen
