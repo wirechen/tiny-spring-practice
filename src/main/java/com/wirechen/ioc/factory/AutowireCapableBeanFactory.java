@@ -1,6 +1,7 @@
 package com.wirechen.ioc.factory;
 
 import com.wirechen.ioc.bean.BeanDefinition;
+import com.wirechen.ioc.bean.BeanReference;
 import com.wirechen.ioc.bean.PropertyValue;
 
 import java.lang.reflect.Field;
@@ -51,7 +52,12 @@ public class AutowireCapableBeanFactory extends AbstractBeanFactory {
         for (PropertyValue propertyValue : propertyValueList) {
             Field field = bean.getClass().getDeclaredField(propertyValue.getName());
             field.setAccessible(true);
-            field.set(bean, propertyValue.getValue());
+            Object value = propertyValue.getValue();
+            if (value instanceof BeanReference) {
+                BeanReference beanReference = (BeanReference) value;
+                value = getBean(beanReference.getName());
+            }
+            field.set(bean, value);
         }
     }
 }

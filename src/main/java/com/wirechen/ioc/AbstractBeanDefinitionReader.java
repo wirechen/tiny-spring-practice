@@ -4,6 +4,7 @@ import com.wirechen.ioc.bean.BeanDefinition;
 import com.wirechen.ioc.io.ResourceLoader;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
@@ -19,7 +20,8 @@ public abstract class AbstractBeanDefinitionReader implements BeanDefinitionRead
 
     protected AbstractBeanDefinitionReader(ResourceLoader resourceLoader) {
         this.resourceLoader = resourceLoader;
-        this.registryMap = new HashMap<String, BeanDefinition>();
+//        this.registryMap = new HashMap<String, BeanDefinition>();
+        this.registryMap = new LinkedHashMap<String, BeanDefinition>();  //按xml的顺序加载BeanDifinition
     }
 
     public ResourceLoader getResourceLoader() {
@@ -29,5 +31,5 @@ public abstract class AbstractBeanDefinitionReader implements BeanDefinitionRead
     public Map<String, BeanDefinition> getRegistryMap() {
         return registryMap;
     }
-    
+
 }
