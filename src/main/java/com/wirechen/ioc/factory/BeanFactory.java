@@ -15,11 +15,10 @@ public interface BeanFactory {
     // 获取bean
     Object getBean(String name);
 
-    /**
-     * 注册bean
-     * @param name
-     * @param beanDefinition
-     */
+    // 注册bean
     void registerBeanDefinition(String name, BeanDefinition beanDefinition);
+
+    // 初始化bean
+    void preInstantiateSingletons();
 
 }

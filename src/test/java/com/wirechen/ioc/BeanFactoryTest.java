@@ -24,6 +24,9 @@ public class BeanFactoryTest {
             beanFactory.registerBeanDefinition(name, beanDefinition);
         });
 
+        // 4、初始化bean（不使用lazy-init的方式）
+        beanFactory.preInstantiateSingletons();
+
         // 4、获取bean
         OutputService outputService = (OutputService) beanFactory.getBean("outputService");
         HelloWorldService helloWorldService = outputService.getHelloWorldService();
