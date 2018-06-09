@@ -17,14 +17,20 @@ public abstract class AbstractBeanFactory implements BeanFactory {
 
     @Override
     public Object getBean(String name) {
-        return beanDefinitionMap.get(name).getBean();
+        BeanDefinition beanDefinition = beanDefinitionMap.get(name);
+        if (beanDefinition == null) {
+            throw new IllegalArgumentException("No bean named " + name + " is defined");
+        }
+        Object bean = beanDefinition.getBean();
+        if (bean == null) {
+            bean = doCreateBean(beanDefinition);
+        }
+        return bean;
     }
 
     @Override
     public void registerBeanDefinition(String name, BeanDefinition beanDefinition) {
-        Object bean = doCreateBean(beanDefinition);
-        beanDefinition.setBean(bean);
-        beanDefinitionMap.put(name, beanDefinition);
+        beanDefinitionMap.put(name, beanDefinition);  // 在向工厂中注入的时候只注入bean的定义（BeanDifinition）不再创建bean实例（创建放在）
     }
 
     // 模板设计模式：定义好全局模板，关键功能让子类实现

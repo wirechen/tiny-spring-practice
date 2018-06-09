@@ -8,6 +8,7 @@ package com.wirechen.ioc;
 public class HelloWorldService {
 
     private String text;
+    private OutputService outputService;
 
     public String getText() {
         return text;
@@ -21,4 +22,11 @@ public class HelloWorldService {
         System.out.println(text);
     }
 
+    public void setOutputService(OutputService outputService) {
+        this.outputService = outputService;
+    }
+
+    public OutputService getOutputService() {
+        return outputService;
+    }
 }

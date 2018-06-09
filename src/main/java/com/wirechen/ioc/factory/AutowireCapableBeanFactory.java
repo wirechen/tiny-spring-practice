@@ -23,6 +23,7 @@ public class AutowireCapableBeanFactory extends AbstractBeanFactory {
     protected Object doCreateBean(BeanDefinition beanDefinition) {
         try {
             Object bean = createBeanInstance(beanDefinition);
+            beanDefinition.setBean(bean);
             applyPropertyValues(bean, beanDefinition);
             return bean;
         } catch (Exception e) {

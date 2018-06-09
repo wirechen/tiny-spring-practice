@@ -20,8 +20,7 @@ public abstract class AbstractBeanDefinitionReader implements BeanDefinitionRead
 
     protected AbstractBeanDefinitionReader(ResourceLoader resourceLoader) {
         this.resourceLoader = resourceLoader;
-//        this.registryMap = new HashMap<String, BeanDefinition>();
-        this.registryMap = new LinkedHashMap<String, BeanDefinition>();  //按xml的顺序加载BeanDifinition
+        this.registryMap = new HashMap<String, BeanDefinition>();
     }
 
     public ResourceLoader getResourceLoader() {
