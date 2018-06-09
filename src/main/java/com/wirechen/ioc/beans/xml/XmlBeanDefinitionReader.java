@@ -1,12 +1,11 @@
-package com.wirechen.ioc.xml;
+package com.wirechen.ioc.beans.xml;
 
-import com.wirechen.ioc.AbstractBeanDefinitionReader;
-import com.wirechen.ioc.bean.BeanDefinition;
-import com.wirechen.ioc.bean.BeanReference;
-import com.wirechen.ioc.bean.PropertyValue;
-import com.wirechen.ioc.bean.PropertyValues;
-import com.wirechen.ioc.io.Resource;
-import com.wirechen.ioc.io.ResourceLoader;
+import com.wirechen.ioc.beans.AbstractBeanDefinitionReader;
+import com.wirechen.ioc.beans.BeanDefinition;
+import com.wirechen.ioc.beans.BeanReference;
+import com.wirechen.ioc.beans.PropertyValue;
+import com.wirechen.ioc.beans.io.Resource;
+import com.wirechen.ioc.beans.io.ResourceLoader;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;

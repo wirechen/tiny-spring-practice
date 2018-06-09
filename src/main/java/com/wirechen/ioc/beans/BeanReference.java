@@ -1,4 +1,4 @@
-package com.wirechen.ioc.bean;
+package com.wirechen.ioc.beans;
 
 /**
  * @Author: WireChen

@@ -1,10 +1,8 @@
-package com.wirechen.ioc;
+package com.wirechen.ioc.beans;
 
-import com.wirechen.ioc.bean.BeanDefinition;
-import com.wirechen.ioc.io.ResourceLoader;
+import com.wirechen.ioc.beans.io.ResourceLoader;
 
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**

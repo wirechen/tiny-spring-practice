@@ -1,9 +1,6 @@
-package com.wirechen.ioc.io;
-
-import com.wirechen.ioc.bean.BeanDefinition;
+package com.wirechen.ioc.beans.io;
 
 import java.net.URL;
-import java.util.Map;
 
 /**
  * @Author: WireChen

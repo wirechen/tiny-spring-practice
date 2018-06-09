@@ -1,4 +1,4 @@
-package com.wirechen.ioc;
+package com.wirechen.ioc.beans;
 
 import java.io.IOException;
 

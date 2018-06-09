@@ -1,8 +1,8 @@
-package com.wirechen.ioc.factory;
+package com.wirechen.ioc.beans.factory;
 
-import com.wirechen.ioc.bean.BeanDefinition;
-import com.wirechen.ioc.bean.BeanReference;
-import com.wirechen.ioc.bean.PropertyValue;
+import com.wirechen.ioc.beans.BeanDefinition;
+import com.wirechen.ioc.beans.BeanReference;
+import com.wirechen.ioc.beans.PropertyValue;
 
 import java.lang.reflect.Field;
 import java.util.List;

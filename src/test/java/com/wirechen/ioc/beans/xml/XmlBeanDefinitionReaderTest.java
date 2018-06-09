@@ -1,8 +1,8 @@
-package com.wirechen.ioc.xml;
+package com.wirechen.ioc.beans.xml;
 
 
-import com.wirechen.ioc.bean.BeanDefinition;
-import com.wirechen.ioc.io.UrlResourceLoader;
+import com.wirechen.ioc.beans.BeanDefinition;
+import com.wirechen.ioc.beans.io.UrlResourceLoader;
 import org.junit.Assert;
 import org.junit.Test;
 

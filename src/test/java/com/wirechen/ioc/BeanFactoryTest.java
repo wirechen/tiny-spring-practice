@@ -1,10 +1,11 @@
 package com.wirechen.ioc;
 
 
-import com.wirechen.ioc.factory.AutowireCapableBeanFactory;
-import com.wirechen.ioc.factory.BeanFactory;
-import com.wirechen.ioc.io.UrlResourceLoader;
-import com.wirechen.ioc.xml.XmlBeanDefinitionReader;
+import com.wirechen.ioc.beans.factory.AbstractBeanFactory;
+import com.wirechen.ioc.beans.factory.AutowireCapableBeanFactory;
+import com.wirechen.ioc.beans.factory.BeanFactory;
+import com.wirechen.ioc.beans.io.UrlResourceLoader;
+import com.wirechen.ioc.beans.xml.XmlBeanDefinitionReader;
 import org.junit.Test;
 
 public class BeanFactoryTest {
@@ -13,7 +14,7 @@ public class BeanFactoryTest {
     public void test() throws Exception {
 
         // 1、初始化bean工厂
-        BeanFactory beanFactory = new AutowireCapableBeanFactory();
+        AbstractBeanFactory beanFactory = new AutowireCapableBeanFactory();
 
         // 2、读取并解析xml文件
         XmlBeanDefinitionReader beanDefinitionReader = new XmlBeanDefinitionReader(new UrlResourceLoader());

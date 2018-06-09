@@ -1,6 +1,6 @@
-package com.wirechen.ioc.factory;
+package com.wirechen.ioc.beans.factory;
 
-import com.wirechen.ioc.bean.BeanDefinition;
+import com.wirechen.ioc.beans.BeanDefinition;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -14,6 +14,9 @@ public abstract class AbstractBeanFactory implements BeanFactory {
 
     private Map<String, BeanDefinition> beanDefinitionMap = new ConcurrentHashMap<String, BeanDefinition>();
 
+    public Map<String, BeanDefinition> getBeanDefinitionMap() {
+        return beanDefinitionMap;
+    }
 
     @Override
     public Object getBean(String name) {
@@ -28,7 +31,6 @@ public abstract class AbstractBeanFactory implements BeanFactory {
         return bean;
     }
 
-    @Override
     public void registerBeanDefinition(String name, BeanDefinition beanDefinition) {
         beanDefinitionMap.put(name, beanDefinition);  // 在向工厂中注入的时候只注入bean的定义（BeanDifinition）不再创建bean实例（创建放在）
     }
@@ -36,7 +38,6 @@ public abstract class AbstractBeanFactory implements BeanFactory {
     /**
      * 初始化：把beanDefinitionMap中所有的bean全部创建到工厂中
      */
-    @Override
     public void preInstantiateSingletons() {
         beanDefinitionMap.forEach((name, beanDefinition) -> {
             getBean(name);

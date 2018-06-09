@@ -1,4 +1,4 @@
-package com.wirechen.ioc.bean;
+package com.wirechen.ioc.beans;
 
 import java.util.ArrayList;
 import java.util.List;
