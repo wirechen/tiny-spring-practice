@@ -11,7 +11,7 @@
     - [step6-使用lazy-init懒加载解决循环依赖问题](#step6-使用lazy-init懒加载解决循环依赖问题)
     - [step7-使用单例预加载](#step7-使用单例预加载)
     - [step8-ApplicationContext登场](#step8-applicationcontext登场)
-    - step9-用Anonation方式来实现运行时注入bean
+    - step9-用Annotation方式来实现运行时注入bean
 - 【Spring之AOP功能】
 
 
