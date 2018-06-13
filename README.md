@@ -11,8 +11,8 @@
     - [step6-使用lazy-init懒加载解决循环依赖问题](#ioc_step6)
     - [step7-使用单例预加载](#ioc_step7)
     - [step8-ApplicationContext登场](#ioc_step8)
-    - [step9-用Anonation方式来实现运行时注入bean]()
-- [【Spring之AOP功能】]()
+    - step9-用Anonation方式来实现运行时注入bean
+- 【Spring之AOP功能】
 
 
 ### <span id="backgroud">背景</span>
@@ -46,7 +46,7 @@ step1中bean是由我们自己创建的，用模板设计模式优化BeanFactory
     - ***AbstractBeanFactory***：定义好获取bean和注册bean的方法，将具体实现doCreateBean的方法交给子类。
     - ***AutowireCapableBeanFactory***：继承模板bean工厂，实现doCreateBean方法。
 测试代码：
-```
+```javascript
 @Test
 public void test() throws Exception {
 
@@ -73,7 +73,7 @@ public void test() throws Exception {
     - ***PropertyValues***：维护一个List集合用于存取PropertyValue。
     - ***AutowireCapableBeanFactory***：利用反射给`doCreateBean`方法增加赋值bean对象的属性。
 测试方法：
-```
+```javascript
 @Test
 public void test() throws Exception {
 
@@ -110,7 +110,7 @@ public void test() throws Exception {
     - ***AbstractBeanDefinitionReader***：定义BeanDefinitionReader模板：维护一个resourceLoader和registryMap，
     - ***XmlBeanDefinitionReader***：继承AbstractBeanDefinitionReader完成具体的解析xml的工作，解析后封装到BeanDefinition并将BeanDefinition装入registryMap中。
 测试代码：
-```
+```javascript
 @Test
 public void test() throws Exception {
 
@@ -137,7 +137,7 @@ public void test() throws Exception {
     - ***BeanReference***：也是用key-value的形式统一表示引用的对象名称和对象实例。
     - ***XmlBeanDefinitionReader***：修改解析xml读取方法增加判断属性是引用其他bean的逻辑。
     - ***AutowireCapableBeanFactory***：修改bean属性赋值增加判断是引用的逻辑。
-```
+```javascript
     String name = propertyEle.getAttribute("name");
     String value = propertyEle.getAttribute("value");
     // 注意看xml的结构
@@ -161,7 +161,7 @@ public void test() throws Exception {
     field.set(bean, value);
 ```
 测试代码：
-```
+```javascript
 @Test
 public void test() throws Exception {
 
@@ -188,7 +188,7 @@ public void test() throws Exception {
 - <span id="ioc_step6">step6-使用lazy-init懒加载解决循环依赖问题：`git checkout Spring-IOC-6`</span>
 其实在step5中是有很多问题的，比如注册顺序，如果被依赖的bean后注册就使依赖的bean找到被依赖的bean。还比如两个bean相互依赖注入到各自的属性中的时候就会造成循环依赖一直不会被创建。为了解决这两个问题这一步我们将`doCreateBean`放在`getBean`的中。这样在注入bean的时候，如果该属性对应的bean找不到，那么就先创建！因为总是先创建后注入，所以不会存在两个循环依赖的bean创建死锁的问题。
     - ***AbstractBeanFactory***：把创建bean的方法从注册bean中移到获取bean中去。
-```
+```javascript
 @Override
 public Object getBean(String name) {
     BeanDefinition beanDefinition = beanDefinitionMap.get(name);
@@ -205,7 +205,7 @@ public Object getBean(String name) {
 - <span id="ioc_step7">step7-使用单例预加载：`git checkout Spring-IOC-7`</span>
 step6中将doCreateBean放在getBean中瞬间解决了注册顺序和循环依赖的问题，解决思路是用懒加载的方式在获取bean的时候才创建bean。我们知道Spring有单例和多例模式，我们在bean工厂中使用beanDefinitionMap就是实现的单例模式，单例模式在Spring中默认是预加载的方式，如果要实现预加载的话解决思路是在介于工厂注册bean和获取bea之间增加一个加载bean的方法。
     - ***AbstractBeanFactory***：预加载的方法只需要遍历beanDefinitionMap然后调用getBean方法就能在真正使用bean之前全部加载创建所有bean。
-```
+```javascript
 public void preInstantiateSingletons() {
     beanDefinitionMap.forEach((name, beanDefinition) -> {
         getBean(name);
@@ -213,7 +213,7 @@ public void preInstantiateSingletons() {
 }
 ```  
 测试代码：
-```
+```javascript
 @Test
 public void test() throws Exception {
 
@@ -247,7 +247,7 @@ public void test() throws Exception {
     - ***ClassPathXmlApplicationContext***：继承AbstractApplicationContext，主要功能是通过构造方法传入xml文件路径完成资源加载、读取、解析、注册装配。
 
 测试代码：
-```
+```javascript
 @Test
 public void testApplicationContext() throws Exception{
     ApplicationContext applicationContext = new ClassPathXmlApplicationContext("tinyioc.xml");
