@@ -15,10 +15,10 @@
 - 【Spring之AOP功能】
 
 
-### 背景
+### 背景  
 最近想深入学习一下Spring的两大核心功能：IOC、AOP。想看源码但是Spring的源码层次复杂，封装繁琐，简单的逻辑写的非常“啰嗦”，阅读起来很费劲。然后发现了多年前的一个精简版的Spring学习项目，叫[tiny-spring](https://github.com/code4craft/tiny-spring)，作者对spring核心的IOC和AOP进行了临摹实现，也很细心的对实现步骤进行了拆分。我看完了tiny-spring收获许多，自己也参考该项目进行了模仿与实践，从我学习的角度，拆分步骤更加细粒，也想在此基础上后期增加一些新的功能。
 
-### Spring之IOC容器
+### Spring之IOC容器  
 - **step1-最基本的容器：** `git checkout Spring-IOC-1`  
 就两个类：
     - ***BeanDefinition***：用于保存bean对象以及其他额外的信息。
