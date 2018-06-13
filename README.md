@@ -23,6 +23,7 @@
 就两个类：
     - ***BeanDefinition***：用于保存bean对象以及其他额外的信息。
     - ***BeanFactory***：维护一个线程安全的ConcurrentHashMap集合，用于存取bean。  
+    
 测试代码：
 ```javascript
 @Test
@@ -44,7 +45,8 @@ public void test() throws Exception {
 - <span id="ioc_step2">**step2-bean的注册和获取由工厂负责：**</span> `git checkout Spring-IOC-2`  
 step1中bean是由我们自己创建的，用模板设计模式优化BeanFactory，这里把bean创建交给工厂，为了保证扩展性，我们使用Extract Interface的方法，将BeanFactory替换成接口，而使用AbstractBeanFactory和AutowireCapableBeanFactory作为其实现，这里用到了模板设计模式。
     - ***AbstractBeanFactory***：定义好获取bean和注册bean的方法，将具体实现doCreateBean的方法交给子类。
-    - ***AutowireCapableBeanFactory***：继承模板bean工厂，实现doCreateBean方法。
+    - ***AutowireCapableBeanFactory***：继承模板bean工厂，实现doCreateBean方法。  
+    
 测试代码：
 ```javascript
 @Test
@@ -71,7 +73,8 @@ public void test() throws Exception {
 目前我们的bean还是一个没有任何属性的，这一步将对bean注入属性。Spring本身使用了setter来进行注入，这里为了代码简洁，我们使用Field的形式来注入，创建一个`PropertyValue`类，一个bean可以有多个属性，那么再创建一个`PropertyValues`类保存PropertyValue。
     - ***PropertyValue***：用key-value的形式记录bean的属性。
     - ***PropertyValues***：维护一个List集合用于存取PropertyValue。
-    - ***AutowireCapableBeanFactory***：利用反射给`doCreateBean`方法增加赋值bean对象的属性。
+    - ***AutowireCapableBeanFactory***：利用反射给`doCreateBean`方法增加赋值bean对象的属性。  
+    
 测试方法：
 ```javascript
 @Test
@@ -108,7 +111,8 @@ public void test() throws Exception {
  资源加载到内存做好了，现在我们需要去读取并解析然后封装到BeanDefinition中。
     - ***BeanDefinitionReader***：定义统一BeanDefinition读取接口：实现该接口可按自定义类型读取解析BeanDefinition。
     - ***AbstractBeanDefinitionReader***：定义BeanDefinitionReader模板：维护一个resourceLoader和registryMap，
-    - ***XmlBeanDefinitionReader***：继承AbstractBeanDefinitionReader完成具体的解析xml的工作，解析后封装到BeanDefinition并将BeanDefinition装入registryMap中。
+    - ***XmlBeanDefinitionReader***：继承AbstractBeanDefinitionReader完成具体的解析xml的工作，解析后封装到BeanDefinition并将BeanDefinition装入registryMap中。  
+    
 测试代码：
 ```javascript
 @Test
@@ -159,7 +163,8 @@ public void test() throws Exception {
         value = getBean(beanReference.getName());
     }
     field.set(bean, value);
-```
+```  
+
 测试代码：
 ```javascript
 @Test
@@ -211,7 +216,8 @@ public void preInstantiateSingletons() {
         getBean(name);
     });
 }
-```  
+```    
+
 测试代码：
 ```javascript
 @Test
@@ -244,8 +250,8 @@ public void test() throws Exception {
 测试代码中我们可以将`初始化bean工厂`，`读取解析xml文件`，`注册bean`三个预准备工作全都放在我们熟悉的ApplicationContext中去完成。
     - ***ApplicationContext接口***：继承BeanFactory接口，使其拥有获取bean功能。
     - ***AbstractApplicationContext***：实现ApplicationContext接口，自身维护一个AbstractBeanFactory属性，对外提供getBean的方法。
-    - ***ClassPathXmlApplicationContext***：继承AbstractApplicationContext，主要功能是通过构造方法传入xml文件路径完成资源加载、读取、解析、注册装配。
-
+    - ***ClassPathXmlApplicationContext***：继承AbstractApplicationContext，主要功能是通过构造方法传入xml文件路径完成资源加载、读取、解析、注册装配。  
+    
 测试代码：
 ```javascript
 @Test
