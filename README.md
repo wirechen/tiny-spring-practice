@@ -160,7 +160,7 @@ public void test() throws Exception {
         beanDefinition.getPropertyValues().addPropertyValue(new PropertyValue(name, beanReference));
     }
 ```  
-```
+```javascript
     Object value = propertyValue.getValue();
     if (value instanceof BeanReference) {
         BeanReference beanReference = (BeanReference) value;
@@ -257,7 +257,7 @@ public void test() throws Exception {
 测试代码中我们可以将`初始化bean工厂`，`读取解析xml文件`，`注册bean`三个预准备工作全都放在我们熟悉的ApplicationContext中去完成。
 - ***ApplicationContext接口***：继承BeanFactory接口，使其拥有获取bean功能。
 - ***AbstractApplicationContext***：实现ApplicationContext接口，自身维护一个AbstractBeanFactory属性，对外提供getBean的方法。
-- ***ClassPathXmlApplicationContext***：继承AbstractApplicationContext，主要功能是通过构造方法传入xml文件路径完成资源加载、读取、解析、注册装配。  
+- ***ClassPathXmlApplicationContext***：继承AbstractApplicationContext，主要功能是通过构造方法传入xml文件路径完成资源加载、读取、解析、注册装配等一套工作。  
     
 测试代码：
 ```javascript
