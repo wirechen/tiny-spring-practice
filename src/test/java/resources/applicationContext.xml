@@ -9,13 +9,7 @@
 	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd">
 
 
-    <bean name="outputService" class="com.wirechen.ioc.OutputService">
-        <property name="helloWorldService" ref="helloWorldService"></property>
-    </bean>
-
-    <bean name="helloWorldService" class="com.wirechen.ioc.HelloWorldService">
-        <property name="text" value="Hello World!"></property>
-        <property name="outputService" ref="outputService"></property>
-    </bean>
+    <!--开启注解的扫描　扫描com.wirechen.ioc下所有的包-->
+    <context:component-scan base-package="com.wirechen.ioc" ></context:component-scan>
 
 </beans>
